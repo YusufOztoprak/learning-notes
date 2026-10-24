@@ -7,9 +7,9 @@
 
 | Pattern | Problem it solves | One-line solution | My example |
 |---|---|---|---|
-| **Factory Method** | Business logic coupled to concrete classes; adding a type means editing existing code | Subclasses override a factory method to decide which class to create | `IngestionPipeline.createEmbedder()` → `EmbeddingProvider` |
-| **Singleton** | A resource must have exactly one instance with global access (config, DB pool) | Private constructor + static `getInstance()` with lazy init | `AppConfig.getInstance()` |
-| **Builder** | Objects with many optional parts → telescoping constructors | Separate builder with one method per step; call only what you need, then `build()` | `PromptBuilder` (fluent, validates on `build()`) |
+| **Factory Method** | Business logic coupled to concrete classes; adding a type means editing existing code | Subclasses override a factory method to decide which class to create | Exercise: `IngestionPipeline.createEmbedder()` ([factory.ts](./2026-W41-creational-patterns/factory.ts))<br>Project (simple factory + DI): `rag-service/src/embeddings/embedding.module.ts` — `EMBEDDING_PROVIDER=fake` switches OpenAI → fake with no code change |
+| **Singleton** | A resource must have exactly one instance with global access (config, DB pool) | Private constructor + static `getInstance()` with lazy init | Exercise: `AppConfig.getInstance()` ([singleton.ts](./2026-W41-creational-patterns/singleton.ts))<br>Project (DI-managed): `rag-service/src/database/database.module.ts` — one shared `PG_POOL` |
+| **Builder** | Objects with many optional parts → telescoping constructors | Separate builder with one method per step; call only what you need, then `build()` | Exercise: `PromptBuilder` ([builder.ts](./2026-W41-creational-patterns/builder.ts))<br>Project: `rag-service/src/llm/prompt.builder.ts` — builds the RAG prompt, rejects an empty question |
 
 ---
 
